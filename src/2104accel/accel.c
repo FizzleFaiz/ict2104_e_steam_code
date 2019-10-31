@@ -12,6 +12,12 @@
  * https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
  * https://www.microchip.com/forums/m66323.aspx
  * https://courses.cs.washington.edu/courses/cse474/17wi/labs/l4/MPU6050BasicExample.ino
+ *
+ * PINS USED:
+ * VCC - 3V3
+ * GND - GND
+ * SCL - P6.5
+ * SDA - P6.4
  */
 
 #include "msp.h"

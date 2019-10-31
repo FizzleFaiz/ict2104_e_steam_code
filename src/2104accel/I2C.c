@@ -7,6 +7,12 @@
  * REFERENCES:
  * http://www.ti.com/lit/ug/spruhd4m/spruhd4m.pdf
  * i2cmasterexample1.c from resource explorer
+ *
+ * PINS USED:
+ * VCC - 3V3
+ * GND - GND
+ * SCL - P6.5
+ * SDA - P6.4
  */
 
 #include "I2C.h"
