@@ -52,6 +52,8 @@
 
 I2C_Handle i2c;
 I2C_Params i2cParams;
+double x,y,z;
+int errorCount;
 
 void *mainThread(void *arg0)
 {
@@ -68,24 +70,32 @@ void *mainThread(void *arg0)
 
     while(1)
     {
+        errorCount = 0;
         int16_t* accelData = readAccelData();
+        x = (double)((accelData[0] * 1.0) / 2048.0);
+        y = (double)((accelData[1] * 1.0) / 2048.0);
+        z = (double)((accelData[2] * 1.0) / 2048.0);
 
         /* Print Accel values */
-        printf("ACCELEROMETER\t");
-        printf("X= %5d\t", accelData[0]);
-        printf("Y= %5d\t", accelData[1]);
-        printf("Z= %5d\n", accelData[2]);
-        printf("-----------------------------------------------------------------------\n");
+        //printf("ACCELEROMETER\t");
+        //printf("X= %5d\t", accelData[0]);
+        //printf("Y= %5d\t", accelData[1]);
+        //printf("Z= %5d\n", accelData[2]);
+        //printf("-----------------------------------------------------------------------\n");
 
-        if (accelData[0] == 0 && accelData[1] == 0){  /* Simulate if structural integrity upright */
-            P1OUT = ~BIT0;
-            P2OUT |= BIT1;  /* Stable indicator */
-            printf("STABLE\n");
+        if ((x > -1.0 && x < 1.0) && (y > -1.0 && y < 1.0)){  /* Simulate if structural integrity upright */
+                P1OUT = ~BIT0;
+                P2OUT |= BIT1;  /* Stable indicator */
         }
+/*        if ((x < -1.0 && x > 1.0) || (y < -1.0 && y > 1.0)){
+            if (z > 5.6 && z < 6){
+                P1OUT = ~BIT0;
+                P2OUT |= BIT1;   Stable indicator
+            }
+        }*/
         else{
             P1OUT |= BIT0;   /* Damage indicator */
             P2OUT = ~BIT1;
-            printf("DAMAGED\n");
         }
         delayMs(10000);
     }

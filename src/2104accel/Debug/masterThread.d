@@ -33,7 +33,7 @@ masterThread.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/abi_pr
 masterThread.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/xlocale/_time.h
 masterThread.obj: C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/drivers/I2C.h
 masterThread.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/stdbool.h
-masterThread.obj: C:/Users/hafiz/workspace_v9/2104accel/Debug/syscfg/ti_drivers_config.h
+masterThread.obj: C:/Users/hafiz/e_steam/ict2104_e_steam_code/src/2104accel/Debug/syscfg/ti_drivers_config.h
 masterThread.obj: C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/devices/DeviceFamily.h
 masterThread.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/math.h
 masterThread.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/_defs.h
@@ -72,7 +72,7 @@ C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/abi_prefix.h:
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/xlocale/_time.h: 
 C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/drivers/I2C.h: 
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/stdbool.h: 
-C:/Users/hafiz/workspace_v9/2104accel/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/hafiz/e_steam/ict2104_e_steam_code/src/2104accel/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/devices/DeviceFamily.h: 
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/math.h: 
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/_defs.h: 
