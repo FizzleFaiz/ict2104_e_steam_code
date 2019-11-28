@@ -12,6 +12,7 @@ SYSCFG_SRCS += \
 ../i2cmasterexample1.syscfg 
 
 C_SRCS += \
+../HCSR04.c \
 ../I2C.c \
 ../accel.c \
 ./syscfg/ti_drivers_config.c \
@@ -26,6 +27,7 @@ GEN_MISC_DIRS += \
 ./syscfg/ 
 
 C_DEPS += \
+./HCSR04.d \
 ./I2C.d \
 ./accel.d \
 ./syscfg/ti_drivers_config.d \
@@ -34,6 +36,7 @@ C_DEPS += \
 ./masterThread2(copy).d 
 
 OBJS += \
+./HCSR04.obj \
 ./I2C.obj \
 ./accel.obj \
 ./syscfg/ti_drivers_config.obj \
@@ -49,6 +52,7 @@ GEN_MISC_DIRS__QUOTED += \
 "syscfg\" 
 
 OBJS__QUOTED += \
+"HCSR04.obj" \
 "I2C.obj" \
 "accel.obj" \
 "syscfg\ti_drivers_config.obj" \
@@ -61,6 +65,7 @@ GEN_MISC_FILES__QUOTED += \
 "syscfg\syscfg_c.rov.xs" 
 
 C_DEPS__QUOTED += \
+"HCSR04.d" \
 "I2C.d" \
 "accel.d" \
 "syscfg\ti_drivers_config.d" \
@@ -72,6 +77,7 @@ GEN_FILES__QUOTED += \
 "syscfg\ti_drivers_config.c" 
 
 C_SRCS__QUOTED += \
+"../HCSR04.c" \
 "../I2C.c" \
 "../accel.c" \
 "./syscfg/ti_drivers_config.c" \

@@ -12,6 +12,7 @@ GEN_CMDS += C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_cc
 GEN_CMDS__FLAG := -l"C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug/configPkg/linker.cmd"
 
 ORDERED_OBJS += \
+"./HCSR04.obj" \
 "./I2C.obj" \
 "./accel.obj" \
 "./syscfg/ti_drivers_config.obj" \
@@ -151,7 +152,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "2104accel.out"
 
 dependents:
-	-cd C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug && $(MAKE) all
+	-cd C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug && $(MAKE) clean all
 
 # Tool invocations
 2104accel.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug/tirtos_builds_MSP_EXP432P401R_release_ccs.lib
@@ -171,8 +172,8 @@ dependents:
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "I2C.obj" "accel.obj" "syscfg\ti_drivers_config.obj" "main_tirtos.obj" "masterThread.obj" "masterThread2(copy).obj" 
-	-$(RM) "I2C.d" "accel.d" "syscfg\ti_drivers_config.d" "main_tirtos.d" "masterThread.d" "masterThread2(copy).d" 
+	-$(RM) "HCSR04.obj" "I2C.obj" "accel.obj" "syscfg\ti_drivers_config.obj" "main_tirtos.obj" "masterThread.obj" "masterThread2(copy).obj" 
+	-$(RM) "HCSR04.d" "I2C.d" "accel.d" "syscfg\ti_drivers_config.d" "main_tirtos.d" "masterThread.d" "masterThread2(copy).d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

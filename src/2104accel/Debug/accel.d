@@ -26,7 +26,7 @@ accel.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/stddef.h
 accel.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/_ti_config.h
 accel.obj: C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/linkage.h
 accel.obj: ../accel.h
-accel.obj: C:/Users/hafiz/workspace_v9/2104accel/Debug/syscfg/ti_drivers_config.h
+accel.obj: C:/Users/hafiz/e_steam/ict2104_e_steam_code/src/2104accel/Debug/syscfg/ti_drivers_config.h
 accel.obj: C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/devices/DeviceFamily.h
 
 ../accel.c: 
@@ -55,5 +55,5 @@ C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/stddef.h:
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/_ti_config.h: 
 C:/ti/ccs/tools/compiler/ti-cgt-arm_18.12.2.LTS/include/linkage.h: 
 ../accel.h: 
-C:/Users/hafiz/workspace_v9/2104accel/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/hafiz/e_steam/ict2104_e_steam_code/src/2104accel/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_msp432p4_sdk_3_30_00_13/source/ti/devices/DeviceFamily.h: 
