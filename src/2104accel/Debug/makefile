@@ -21,14 +21,17 @@ ORDERED_OBJS += \
 "./main_tirtos.obj" \
 "./masterThread.obj" \
 "./relay.obj" \
-"./sonicThread.obj" \
 "./Hardware/CS_Driver.obj" \
 "./Hardware/GPIO_Driver.obj" \
 "./Hardware/I2C_Driver.obj" \
 "./Hardware/MSPIO.obj" \
 "./Hardware/SPI_Driver.obj" \
 "./Hardware/UART_Driver.obj" \
+"./Not_Working-Sad_Face/mfrc522.obj" \
+"./Not_Working-Sad_Face/ov528.obj" \
+"./Working-Not_Integrated/ESP8266.obj" \
 "./Working-Not_Integrated/HCSR04.obj" \
+"./Working-Not_Integrated/main.obj" \
 "../MSP_EXP432P401R_TIRTOS.cmd" \
 -l"ti/display/lib/display.aem4f" \
 -l"ti/grlib/lib/ccs/m4f/grlib.a" \
@@ -49,9 +52,11 @@ RMDIR := RMDIR /S/Q
 -include sources.mk
 -include subdir_vars.mk
 -include Hardware/subdir_vars.mk
+-include Not_Working-Sad_Face/subdir_vars.mk
 -include Working-Not_Integrated/subdir_vars.mk
 -include subdir_rules.mk
 -include Hardware/subdir_rules.mk
+-include Not_Working-Sad_Face/subdir_rules.mk
 -include Working-Not_Integrated/subdir_rules.mk
 -include objects.mk
 
@@ -186,8 +191,8 @@ dependents:
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "accel.obj" "syscfg\ti_drivers_config.obj" "infrared.obj" "irThread.obj" "keypad.obj" "lcd16.obj" "main_tirtos.obj" "masterThread.obj" "relay.obj" "sonicThread.obj" "Hardware\CS_Driver.obj" "Hardware\GPIO_Driver.obj" "Hardware\I2C_Driver.obj" "Hardware\MSPIO.obj" "Hardware\SPI_Driver.obj" "Hardware\UART_Driver.obj" "Working-Not_Integrated\HCSR04.obj" 
-	-$(RM) "accel.d" "syscfg\ti_drivers_config.d" "infrared.d" "irThread.d" "keypad.d" "lcd16.d" "main_tirtos.d" "masterThread.d" "relay.d" "sonicThread.d" "Hardware\CS_Driver.d" "Hardware\GPIO_Driver.d" "Hardware\I2C_Driver.d" "Hardware\MSPIO.d" "Hardware\SPI_Driver.d" "Hardware\UART_Driver.d" "Working-Not_Integrated\HCSR04.d" 
+	-$(RM) "accel.obj" "syscfg\ti_drivers_config.obj" "infrared.obj" "irThread.obj" "keypad.obj" "lcd16.obj" "main_tirtos.obj" "masterThread.obj" "relay.obj" "Hardware\CS_Driver.obj" "Hardware\GPIO_Driver.obj" "Hardware\I2C_Driver.obj" "Hardware\MSPIO.obj" "Hardware\SPI_Driver.obj" "Hardware\UART_Driver.obj" "Not_Working-Sad_Face\mfrc522.obj" "Not_Working-Sad_Face\ov528.obj" "Working-Not_Integrated\ESP8266.obj" "Working-Not_Integrated\HCSR04.obj" "Working-Not_Integrated\main.obj" 
+	-$(RM) "accel.d" "syscfg\ti_drivers_config.d" "infrared.d" "irThread.d" "keypad.d" "lcd16.d" "main_tirtos.d" "masterThread.d" "relay.d" "Hardware\CS_Driver.d" "Hardware\GPIO_Driver.d" "Hardware\I2C_Driver.d" "Hardware\MSPIO.d" "Hardware\SPI_Driver.d" "Hardware\UART_Driver.d" "Not_Working-Sad_Face\mfrc522.d" "Not_Working-Sad_Face\ov528.d" "Working-Not_Integrated\ESP8266.d" "Working-Not_Integrated\HCSR04.d" "Working-Not_Integrated\main.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

@@ -122,5 +122,6 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 Hardware \
+Not_Working-Sad_Face \
 Working-Not_Integrated \
 

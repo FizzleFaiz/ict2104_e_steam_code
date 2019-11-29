@@ -20,8 +20,7 @@ C_SRCS += \
 ../lcd16.c \
 ../main_tirtos.c \
 ../masterThread.c \
-../relay.c \
-../sonicThread.c 
+../relay.c 
 
 GEN_FILES += \
 ./syscfg/ti_drivers_config.c 
@@ -38,8 +37,7 @@ C_DEPS += \
 ./lcd16.d \
 ./main_tirtos.d \
 ./masterThread.d \
-./relay.d \
-./sonicThread.d 
+./relay.d 
 
 OBJS += \
 ./accel.obj \
@@ -50,8 +48,7 @@ OBJS += \
 ./lcd16.obj \
 ./main_tirtos.obj \
 ./masterThread.obj \
-./relay.obj \
-./sonicThread.obj 
+./relay.obj 
 
 GEN_MISC_FILES += \
 ./syscfg/ti_drivers_config.h \
@@ -69,8 +66,7 @@ OBJS__QUOTED += \
 "lcd16.obj" \
 "main_tirtos.obj" \
 "masterThread.obj" \
-"relay.obj" \
-"sonicThread.obj" 
+"relay.obj" 
 
 GEN_MISC_FILES__QUOTED += \
 "syscfg\ti_drivers_config.h" \
@@ -85,8 +81,7 @@ C_DEPS__QUOTED += \
 "lcd16.d" \
 "main_tirtos.d" \
 "masterThread.d" \
-"relay.d" \
-"sonicThread.d" 
+"relay.d" 
 
 GEN_FILES__QUOTED += \
 "syscfg\ti_drivers_config.c" 
@@ -100,8 +95,7 @@ C_SRCS__QUOTED += \
 "../lcd16.c" \
 "../main_tirtos.c" \
 "../masterThread.c" \
-"../relay.c" \
-"../sonicThread.c" 
+"../relay.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../i2cmasterexample1.syscfg" 
