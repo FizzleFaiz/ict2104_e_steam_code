@@ -12,13 +12,21 @@ GEN_CMDS += C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_cc
 GEN_CMDS__FLAG := -l"C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug/configPkg/linker.cmd"
 
 ORDERED_OBJS += \
-"./HCSR04.obj" \
 "./I2C.obj" \
 "./accel.obj" \
 "./syscfg/ti_drivers_config.obj" \
+"./infrared.obj" \
+"./irThread.obj" \
+"./keypad.obj" \
+"./lcd16.obj" \
 "./main_tirtos.obj" \
 "./masterThread.obj" \
 "./masterThread2(copy).obj" \
+"./relay.obj" \
+"./Hardware/CS_Driver.obj" \
+"./Hardware/GPIO_Driver.obj" \
+"./Hardware/SPI_Driver.obj" \
+"./Hardware/UART_Driver.obj" \
 "../MSP_EXP432P401R_TIRTOS.cmd" \
 -l"ti/display/lib/display.aem4f" \
 -l"ti/grlib/lib/ccs/m4f/grlib.a" \
@@ -38,7 +46,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include Hardware/subdir_vars.mk
 -include subdir_rules.mk
+-include Hardware/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -152,7 +162,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "2104accel.out"
 
 dependents:
-	-cd C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug && $(MAKE) clean all
+	-cd C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug && $(MAKE) all
 
 # Tool invocations
 2104accel.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/hafiz/workspace_v9/tirtos_builds_MSP_EXP432P401R_release_ccs/Debug/tirtos_builds_MSP_EXP432P401R_release_ccs.lib
@@ -172,8 +182,8 @@ dependents:
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "HCSR04.obj" "I2C.obj" "accel.obj" "syscfg\ti_drivers_config.obj" "main_tirtos.obj" "masterThread.obj" "masterThread2(copy).obj" 
-	-$(RM) "HCSR04.d" "I2C.d" "accel.d" "syscfg\ti_drivers_config.d" "main_tirtos.d" "masterThread.d" "masterThread2(copy).d" 
+	-$(RM) "I2C.obj" "accel.obj" "syscfg\ti_drivers_config.obj" "infrared.obj" "irThread.obj" "keypad.obj" "lcd16.obj" "main_tirtos.obj" "masterThread.obj" "masterThread2(copy).obj" "relay.obj" "Hardware\CS_Driver.obj" "Hardware\GPIO_Driver.obj" "Hardware\SPI_Driver.obj" "Hardware\UART_Driver.obj" 
+	-$(RM) "I2C.d" "accel.d" "syscfg\ti_drivers_config.d" "infrared.d" "irThread.d" "keypad.d" "lcd16.d" "main_tirtos.d" "masterThread.d" "masterThread2(copy).d" "relay.d" "Hardware\CS_Driver.d" "Hardware\GPIO_Driver.d" "Hardware\SPI_Driver.d" "Hardware\UART_Driver.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

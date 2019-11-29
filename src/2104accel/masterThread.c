@@ -53,7 +53,6 @@
 I2C_Handle i2c;
 I2C_Params i2cParams;
 double x,y,z;
-int errorCount;
 
 void *mainThread(void *arg0)
 {
@@ -62,15 +61,14 @@ void *mainThread(void *arg0)
     i2cParams.bitRate = I2C_100kHz;
     i2c = I2C_open(CONFIG_I2C_0, &i2cParams);
 
-    P1DIR = BIT0; /* Set LED1.0 as output pin */
-    P2DIR = BIT1; /* Set LED2.1 (GREEN) as output pin */
+    //P1DIR = BIT0; /* Set LED1.0 as output pin */
+    P2DIR = BIT0 + BIT1; /* Set LED2.1 (GREEN) as output pin */
 
     /* Initialize MPU6050 Device */
     writeByte(); /* Clear sleep mode bit (6). Enable all sensors */
 
     while(1)
     {
-        errorCount = 0;
         int16_t* accelData = readAccelData();
         x = (double)((accelData[0] * 1.0) / 2048.0);
         y = (double)((accelData[1] * 1.0) / 2048.0);
@@ -84,8 +82,9 @@ void *mainThread(void *arg0)
         //printf("-----------------------------------------------------------------------\n");
 
         if ((x > -1.0 && x < 1.0) && (y > -1.0 && y < 1.0)){  /* Simulate if structural integrity upright */
-                P1OUT = ~BIT0;
-                P2OUT |= BIT1;  /* Stable indicator */
+                //P1OUT = ~BIT0;
+                P2OUT = BIT1;
+                P2OUT = ~BIT0;  /* Stable indicator */
         }
 /*        if ((x < -1.0 && x > 1.0) || (y < -1.0 && y > 1.0)){
             if (z > 5.6 && z < 6){
@@ -94,8 +93,9 @@ void *mainThread(void *arg0)
             }
         }*/
         else{
-            P1OUT |= BIT0;   /* Damage indicator */
+            //P1OUT |= BIT0;   /* Damage indicator */
             P2OUT = ~BIT1;
+            P2OUT = BIT0;
         }
         delayMs(10000);
     }

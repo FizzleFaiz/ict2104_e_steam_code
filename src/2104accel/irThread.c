@@ -25,19 +25,26 @@
  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
  * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
  * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /*
- *  ======== main_tirtos.c ========
+ *  ======== mainThread ========
  */
-#include <stdint.h>
 
-/* POSIX Header files */
-#include <pthread.h>
+#include "msp.h"
+#include "infrared.h"
+#include "relay.h"
+#include "lcd16.h"
+#include "keypad.h"
+#include "accel.h"
+
+#include <stdint.h>
+#include <stdio.h>
+#include <stddef.h>
+#include <unistd.h>
 
 /* RTOS header files */
 #include <ti/sysbios/BIOS.h>
@@ -45,61 +52,31 @@
 /* Driver configuration */
 #include <ti/drivers/Board.h>
 
-extern void *mainThread(void *arg0);
-extern void *irThread(void *arg0);
+#include <math.h>
 
-/* Stack size in bytes */
-#define THREADSTACKSIZE    4096
 
-/*
- *  ======== main ========
- */
-int main(void)
+void *irThread(void *arg0)
 {
-    pthread_t           thread;
-    pthread_attr_t      attrs;
-    struct sched_param  priParam;
-    int                 retc;
-
-    /* Call driver init functions */
-    Board_init();
-
-    /* Initialize the attributes structure with default values */
-    pthread_attr_init(&attrs);
-
-    /* Set priority, detach state, and stack size attributes */
-    priParam.sched_priority = 2;
-    retc = pthread_attr_setschedparam(&attrs, &priParam);
-    retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
-    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
-    if (retc != 0) {
-        /* failed to set attributes */
-        while (1) {}
+    infraredinit();
+    relayinit();
+    lcdinit();
+    keypadinit();
+    while (1){
+        if ((P5IN & BIT5)!=BIT5){
+            infrarednodetect();
+            gotoXy(0,0);
+            prints("Enter Password:");
+            gotoXy(0,1);
+            while((P5IN & BIT5)!=BIT5){
+                keypadpress();
+                usleep(50);
+            }
+            delayMs(20000);
+        }
+//        else{
+//            while((P5IN & BIT5)!=BIT5){
+//                infrarednodetect();
+//            }
+//        }
     }
-
-    retc = pthread_create(&thread, &attrs, mainThread, NULL);
-    if (retc != 0) {
-        /* pthread_create() failed */
-        while (1) {}
-    }
-
-    /* Set priority, detach state, and stack size attributes */
-    priParam.sched_priority = 1;
-    retc = pthread_attr_setschedparam(&attrs, &priParam);
-    retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
-    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
-    if (retc != 0) {
-        /* failed to set attributes */
-        while (1) {}
-    }
-
-    retc = pthread_create(&thread, &attrs, irThread, NULL);
-    if (retc != 0) {
-        /* pthread_create() failed */
-        while (1) {}
-    }
-
-    BIOS_start();
-
-    return (0);
 }

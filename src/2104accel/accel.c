@@ -39,6 +39,7 @@ void writeByte(){
 }
 
 int16_t* readAccelData(){
+    usleep(50);
     uint8_t* accelRaw = readI2C(i2c, 0x3B, 6);
     static int16_t accelData[3];
     /*16-bit 2’s complement value. Combine 2 8bit to 16bit data. Offset 2048 to +-16g.*/
