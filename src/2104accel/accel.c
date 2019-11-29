@@ -20,8 +20,8 @@
  * SDA - P6.4
  */
 
+#include <hardware/I2C_Driver.h>
 #include "msp.h"
-#include "I2C.h"
 #include "accel.h"
 
 /* Driver Header files */
@@ -35,12 +35,12 @@ uint8_t AFS_SEL = 3; /* Full scale range 3. +-16g */
 I2C_Handle i2c;
 
 void writeByte(){
-    writeI2C(i2c, 0x6B, 0x00);
+    writeI2C(i2c, 0x6B, 0x00); //0x6B = PWR_MGMT_1
 }
 
 int16_t* readAccelData(){
-    usleep(50);
-    uint8_t* accelRaw = readI2C(i2c, 0x3B, 6);
+    usleep(50); //allow thread to sleep and run the other one for 50us
+    uint8_t* accelRaw = readI2C(i2c, 0x3B, 6); //0x3B (ACCEL_XOUT_H), 6 values
     static int16_t accelData[3];
     /*16-bit 2’s complement value. Combine 2 8bit to 16bit data. Offset 2048 to +-16g.*/
     accelData[0] = (int16_t) ((accelRaw[0] << 8) | accelRaw[1]); /* X */

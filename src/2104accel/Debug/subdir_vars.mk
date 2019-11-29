@@ -12,7 +12,6 @@ SYSCFG_SRCS += \
 ../i2cmasterexample1.syscfg 
 
 C_SRCS += \
-../I2C.c \
 ../accel.c \
 ./syscfg/ti_drivers_config.c \
 ../infrared.c \
@@ -21,8 +20,8 @@ C_SRCS += \
 ../lcd16.c \
 ../main_tirtos.c \
 ../masterThread.c \
-../masterThread2(copy).c \
-../relay.c 
+../relay.c \
+../sonicThread.c 
 
 GEN_FILES += \
 ./syscfg/ti_drivers_config.c 
@@ -31,7 +30,6 @@ GEN_MISC_DIRS += \
 ./syscfg/ 
 
 C_DEPS += \
-./I2C.d \
 ./accel.d \
 ./syscfg/ti_drivers_config.d \
 ./infrared.d \
@@ -40,11 +38,10 @@ C_DEPS += \
 ./lcd16.d \
 ./main_tirtos.d \
 ./masterThread.d \
-./masterThread2(copy).d \
-./relay.d 
+./relay.d \
+./sonicThread.d 
 
 OBJS += \
-./I2C.obj \
 ./accel.obj \
 ./syscfg/ti_drivers_config.obj \
 ./infrared.obj \
@@ -53,8 +50,8 @@ OBJS += \
 ./lcd16.obj \
 ./main_tirtos.obj \
 ./masterThread.obj \
-./masterThread2(copy).obj \
-./relay.obj 
+./relay.obj \
+./sonicThread.obj 
 
 GEN_MISC_FILES += \
 ./syscfg/ti_drivers_config.h \
@@ -64,7 +61,6 @@ GEN_MISC_DIRS__QUOTED += \
 "syscfg\" 
 
 OBJS__QUOTED += \
-"I2C.obj" \
 "accel.obj" \
 "syscfg\ti_drivers_config.obj" \
 "infrared.obj" \
@@ -73,15 +69,14 @@ OBJS__QUOTED += \
 "lcd16.obj" \
 "main_tirtos.obj" \
 "masterThread.obj" \
-"masterThread2(copy).obj" \
-"relay.obj" 
+"relay.obj" \
+"sonicThread.obj" 
 
 GEN_MISC_FILES__QUOTED += \
 "syscfg\ti_drivers_config.h" \
 "syscfg\syscfg_c.rov.xs" 
 
 C_DEPS__QUOTED += \
-"I2C.d" \
 "accel.d" \
 "syscfg\ti_drivers_config.d" \
 "infrared.d" \
@@ -90,14 +85,13 @@ C_DEPS__QUOTED += \
 "lcd16.d" \
 "main_tirtos.d" \
 "masterThread.d" \
-"masterThread2(copy).d" \
-"relay.d" 
+"relay.d" \
+"sonicThread.d" 
 
 GEN_FILES__QUOTED += \
 "syscfg\ti_drivers_config.c" 
 
 C_SRCS__QUOTED += \
-"../I2C.c" \
 "../accel.c" \
 "./syscfg/ti_drivers_config.c" \
 "../infrared.c" \
@@ -106,8 +100,8 @@ C_SRCS__QUOTED += \
 "../lcd16.c" \
 "../main_tirtos.c" \
 "../masterThread.c" \
-"../masterThread2(copy).c" \
-"../relay.c" 
+"../relay.c" \
+"../sonicThread.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../i2cmasterexample1.syscfg" 

@@ -40,6 +40,7 @@
 #include "lcd16.h"
 #include "keypad.h"
 #include "accel.h"
+#include "Working-Not_Integrated/HCSR04.h"
 
 #include <stdint.h>
 #include <stdio.h>
@@ -48,29 +49,20 @@
 
 /* RTOS header files */
 #include <ti/sysbios/BIOS.h>
-
 /* Driver configuration */
 #include <ti/drivers/Board.h>
 
 #include <math.h>
 
-void *irThread(void *arg0)
+void *sonicThread(void *arg0)
 {
-    infraredinit();
-    relayinit();
-    lcdinit();
-    keypadinit();
-    while (1){
-        if ((P5IN & BIT5)!=BIT5){
-            infrarednodetect();
-            gotoXy(0,0);
-            prints("Enter Password:");
-            gotoXy(0,1);
-            while((P5IN & BIT5)!=BIT5){
-                keypadpress();
-                usleep(50);
-            }
-            delayMs(20000);
-        }
+    NVIC->ISER[1] |= 1 << (PORT5_IRQn & 31);
+    __enable_interrupt();
+    hCSR_init();
+    GPIO_registerInterrupt(TRIGGER_PORT, interruptHandler);
+    setTimer();
+
+
+    while(1){
     }
 }

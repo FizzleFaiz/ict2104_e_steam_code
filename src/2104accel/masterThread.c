@@ -86,12 +86,6 @@ void *mainThread(void *arg0)
                 P2OUT = BIT1;
                 P2OUT = ~BIT0;  /* Stable indicator */
         }
-/*        if ((x < -1.0 && x > 1.0) || (y < -1.0 && y > 1.0)){
-            if (z > 5.6 && z < 6){
-                P1OUT = ~BIT0;
-                P2OUT |= BIT1;   Stable indicator
-            }
-        }*/
         else{
             //P1OUT |= BIT0;   /* Damage indicator */
             P2OUT = ~BIT1;

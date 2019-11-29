@@ -15,7 +15,7 @@
  * SDA - P6.4
  */
 
-#include "I2C.h"
+#include <Hardware/I2C_Driver.h>
 
 bool retVal = false;
 I2C_Transaction i2cTransaction;

@@ -24,20 +24,13 @@ void infraredinit(void){
     GPIO_Clear_Interrupt_Flag(INPUT_PORT, INPUT_PIN);     //P5IFG = 0;
     //set as input pin
     GPIO_setAsInput(INPUT_PORT, INPUT_PIN);               //P5DIR &= ~BIT5;
-
-    //used to demo only
-    //P2DIR |= BIT0 + BIT1 + BIT2;
-    //P1DIR = BIT0;
 }
 
 void infrarednodetect(void){
-
-    relayoff();
+    relayoff(); // lock door
 }
 
 void infrareddetect(void){
-    //lock door if infrareddetected for more than 2seconds
-    usleep(50);
-    relayon();
-
+    usleep(50); // allow thread to sleep and run other thread for 50us
+    relayon(); // unlock door
 }

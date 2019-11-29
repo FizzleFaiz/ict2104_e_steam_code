@@ -49,6 +49,7 @@ void checkpassword(void){
             int i = 0;
             int errCheck = 0;
             int length = MAXLENGTH;
+            int reverseCheck = 1;
 
             for (i = 0; i < MAXLENGTH; i++)
             {

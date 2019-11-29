@@ -45,8 +45,9 @@
 /* Driver configuration */
 #include <ti/drivers/Board.h>
 
-extern void *mainThread(void *arg0);
-extern void *irThread(void *arg0);
+extern void *mainThread(void *arg0); //mpu thread
+extern void *irThread(void *arg0); //ir sensor thread
+extern void *sonicThread(void *arg0);
 
 /* Stack size in bytes */
 #define THREADSTACKSIZE    4096
@@ -67,8 +68,45 @@ int main(void)
     /* Initialize the attributes structure with default values */
     pthread_attr_init(&attrs);
 
+//    /* Start of thread 1 for MPU */
+//    /* Set priority, detach state, and stack size attributes */
+//    priParam.sched_priority = 2;
+//    retc = pthread_attr_setschedparam(&attrs, &priParam);
+//    retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
+//    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
+//    if (retc != 0) {
+//        /* failed to set attributes */
+//        while (1) {}
+//    }
+//
+//    retc = pthread_create(&thread, &attrs, mainThread, NULL);
+//    if (retc != 0) {
+//        /* pthread_create() failed */
+//        while (1) {}
+//    }
+//    //end of thread 1
+//
+//    /* Start of thread 2 for IR sensor */
+//    /* Set priority, detach state, and stack size attributes */
+//    priParam.sched_priority = 1; //lower priority than mpu
+//    retc = pthread_attr_setschedparam(&attrs, &priParam);
+//    retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
+//    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
+//    if (retc != 0) {
+//        /* failed to set attributes */
+//        while (1) {}
+//    }
+//
+//    retc = pthread_create(&thread, &attrs, irThread, NULL);
+//    if (retc != 0) {
+//        /* pthread_create() failed */
+//        while (1) {}
+//    }
+//    //end of thread 2
+
+    /* Start of thread 3 for sonic sensor */
     /* Set priority, detach state, and stack size attributes */
-    priParam.sched_priority = 2;
+    priParam.sched_priority = 1; //lower priority than mpu
     retc = pthread_attr_setschedparam(&attrs, &priParam);
     retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
     retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
@@ -77,27 +115,12 @@ int main(void)
         while (1) {}
     }
 
-    retc = pthread_create(&thread, &attrs, mainThread, NULL);
+    retc = pthread_create(&thread, &attrs, sonicThread, NULL);
     if (retc != 0) {
         /* pthread_create() failed */
         while (1) {}
     }
-
-    /* Set priority, detach state, and stack size attributes */
-    priParam.sched_priority = 1;
-    retc = pthread_attr_setschedparam(&attrs, &priParam);
-    retc |= pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_DETACHED);
-    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
-    if (retc != 0) {
-        /* failed to set attributes */
-        while (1) {}
-    }
-
-    retc = pthread_create(&thread, &attrs, irThread, NULL);
-    if (retc != 0) {
-        /* pthread_create() failed */
-        while (1) {}
-    }
+    //end of thread 3
 
     BIOS_start();
 

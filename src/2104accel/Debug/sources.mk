@@ -122,4 +122,5 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 Hardware \
+Working-Not_Integrated \
 
